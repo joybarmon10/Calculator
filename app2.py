@@ -16,13 +16,8 @@ heading_label = Label(root_window, text="Calculator", font=font, bg=body_bg, fg=
 heading_label.grid(row=0, column=0, columnspan=4, pady=10)
 
 # Display Input (grid ব্যবহৃত)
-display_input = Entry(
-    root_window, justify=RIGHT, font=font, bd=5, bg=display_bg, fg="white"
-)
-display_input.grid(
-    row=1, column=0, columnspan=4, padx=10, pady=10, ipady=10, sticky="nsew"
-)
-
+display_input = Entry(root_window, justify=RIGHT, font=font, bd=5, bg=display_bg, fg="white")
+display_input.grid(row=1, column=0, columnspan=4, padx=10, pady=10, ipady=10, sticky="nsew")
 
 # Function to handle button clicks
 def button_click(value):
@@ -36,9 +31,12 @@ def button_click(value):
             display_input.insert(END, "Error")
     elif value == "C":
         display_input.delete(0, END)
+    elif value == "⌫":
+        current_text = display_input.get()
+        display_input.delete(0, END)
+        display_input.insert(END, current_text[:-1])  # Remove the last character
     else:
         display_input.insert(END, value)
-
 
 # Button Layout
 buttons = [
